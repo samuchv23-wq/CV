@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Serve CV locally",
+			"type": "shell",
+			"command": "python3 -m http.server 8000",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Validate CV files",
+			"type": "shell",
+			"command": "python3 - <<'PY'\nfrom pathlib import Path\nfor name in ['index.html', 'styles.css']:\n    p = Path(name)\n    assert p.exists() and p.stat().st_size > 0, f'Missing or empty {name}'\nprint('CV files present')\nPY",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		}
+	]
+}
